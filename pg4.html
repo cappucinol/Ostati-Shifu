@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>zangi panda</title>
+
+   <!-- Css Link -->
+   <link rel="stylesheet" href="./pg2.css">
+</head>
+<body>
+   
+   <div class="cavbar">
+      <a id="#na1" href="./pg1.html">მიმატება</a>
+      <a id="#na2" href="./pg2.html">გამოკლება</a>
+      <a id="#na3" href="./pg3.html">გამრავლება</a>
+      <a id="#na3" href="./pg4.html">გაყოფა</a>
+    </div>
+
+   <!-- Main Container -->
+   <div class="main-container">
+      <div class="main">
+         
+         <!-- Heading -->
+         <h1 class="hedad">გაყოფა: <span id="score1">|ქულა:</span> <span style="color:rgb(178, 255, 36)" id="score">0</span></h1>
+         <div class="rules"><h3>უნდა შეძლო მინიმუმ 10 ქულის აღება სანამ 1 წუთი გავა</h3></div>
+         <!-- Main Box -->
+         <div class="main-box">
+            <div class="show-anwser"><span id="ans">______________________________________________</span>&nbsp;<h4>დრო:</h4><span id="timer"></span></div>
+
+            <div class="box1">
+               <div class="box-col">
+                  <input type="textf" id="intext" class="intext11">
+               </div>
+
+               <div class="add-s">
+                  <p>/</p>
+               </div>
+
+                <div class="box-col">
+                  <input type="textf" id="intext1" class="intext11">
+               </div>
+
+            </div>
+
+            <!-- text input -->
+            <div class="box2">
+               <input tpye="text" id="intext2">
+            </div>
+
+            <!-- button -->
+             <div class="box2">
+               <button class="btn" onclick="Game()"> შეამოწმე პასუხი</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <script>
+      let n1 = Math.floor(Math.random()*4+1);
+      let n2 = Math.floor(Math.random()*4+1);
+
+      document.getElementById("intext").value = n1;
+      document.getElementById("intext1").value = n2;
+
+      let adds= n1 / n2;
+      let score = 0;
+
+      var countdown = 60;
+    var timerDisplay = document.getElementById('timer');
+
+    var countdownInterval = setInterval(function() {
+      countdown--;
+      timerDisplay.textContent = countdown;
+
+      if (countdown <= 0) {
+        clearInterval(countdownInterval);
+        timerDisplay.textContent = "დრო ამოიწურა!";
+        if(score >= 10){
+         timerDisplay.textContent = "მოიგე! მიაღწიე ქულას: "+score;
+        }else{
+         timerDisplay.textContent = "წააგე! მიაღწიე ქულას: "+score;
+        }
+      }
+    }, 1000);
+
+      function Game(){
+         var user= document.getElementById("intext2").value;
+
+         if( user == adds){
+            document.getElementById("ans").innerHTML = "პასუხი სწორია";
+            score += 1; 
+            document.getElementById("score").textContent = score; 
+         }else{
+            document.getElementById("ans").innerHTML = "სწორი პასუხია: " + adds + " . ხელახლა ცადე";
+            score -= 1; 
+            document.getElementById("score").textContent = score; 
+         }
+
+         if(score == -1){
+            score += 1; 
+            document.getElementById("score").textContent = score; 
+         }
+
+
+           var user= document.getElementById("intext2").value = "";
+
+
+      n1 = Math.floor(Math.random()*4+1);
+      n2 = Math.floor(Math.random()*4+1);
+
+      document.getElementById("intext").value = n1;
+      document.getElementById("intext1").value = n2;
+
+      adds= n1 / n2;
+
+
+      }
+   </script>
+
+</body>
+</html>
